@@ -11,8 +11,7 @@ $(function () {
         console.log("connected!");
     });
 
-    function readCookie(name)
-    {
+    function readCookie(name) {
         const value = "; " + document.cookie;
         const parts = value.split("; " + name + "=");
         if (parts.length === 2) return parts.pop().split(";").shift();
@@ -23,17 +22,15 @@ $(function () {
         document.cookie = name + '=; Max-Age=0'
     }
 
-    socket.on('getCookie',function(){
-        var code=readCookie('authCode');
-        var clientId=readCookie('clientId');
-        if(code!=undefined)
-        {
+    socket.on('getCookie', function () {
+        var code = readCookie('authCode');
+        var clientId = readCookie('clientId');
+        if (code != undefined) {
             $("#authCode").val(code);
             eraseCookie('authCode');
-            $("#token").focus();
+            document.getElementById('token').focus();
         }
-        if(clientId!=undefined)
-        {
+        if (clientId != undefined) {
             $("#clientID").val(clientId);
             $("#clientID2").val(clientId);
             eraseCookie('clientId');
@@ -47,25 +44,16 @@ $(function () {
         }
     });
 
-    socket.on('openUrl',function(link){
+    socket.on('openUrl', function (link) {
 
-        if(local)
-        {
-            win.location.href=link.url;
+        if (local) {
+            win.location.href = link.url;
         }
-        else
-        {
-            window.open(link.url,"_self");
+        else {
+            window.open(link.url, "_self");
         }
 
 
-    });
-
-
-
-    socket.on('setAuthCode',function(auth){
-
-        $("#authCode").val(auth.code);
     });
 
     function listen(uri) {
@@ -75,6 +63,7 @@ $(function () {
 
         $('.alert').hide();
         $("#authCode").val('');
+
         event.preventDefault();
 
         var authEndpoint = $("input#authEndpoint").val();
