@@ -11,7 +11,11 @@
 
 	<script>
 		var win;
-
+		var local=false;
+		if(window.location.hostname=="localhost")
+		{
+		    local=true;
+		}
         function showSecret() {
             var x = document.getElementById("clientSecret");
             if (x.type === "password") {
@@ -23,13 +27,21 @@
 
         function handleClick()
 		{
-		    if(document.getElementById("authEndpoint").value!="" && document.getElementById("clientID").value!="" && document.getElementById("scope").value!="")
+		    if(local)
 			{
+                if(document.getElementById("authEndpoint").value!="" && document.getElementById("clientID").value!="" && document.getElementById("scope").value!="")
+                {
 
-                win=window.open(window.location.protocol + '//' + window.location.host+'/wait.html', '_blank');
-                win.document.write("Loading...Please wait");
+                    win=window.open(window.location.protocol + '//' + window.location.host+'/wait.html', '_blank');
+                    win.document.write("Loading...Please wait");
 
 
+                }
+
+			}
+		    else
+			{
+			    return true;
 			}
 
 		}
@@ -109,7 +121,7 @@
 				</div>
 
 				<br>
-				<button type="submit" class="btn btn-primary">Get Authorization Code</button>
+				<button type="submit" class="btn btn-primary" onclick="handleClick()">Get Authorization Code</button>
 				<br>
 			</form>
 		</div>

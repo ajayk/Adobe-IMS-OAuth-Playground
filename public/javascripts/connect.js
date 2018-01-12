@@ -48,10 +48,17 @@ $(function () {
     });
 
     socket.on('openUrl',function(link){
-      // win.location.href=link.url;
-      // win.parent.close();
 
-       window.open(link.url,"_self");
+        if(local)
+        {
+            win.location.href=link.url;
+        }
+        else
+        {
+            window.open(link.url,"_self");
+        }
+
+
     });
 
 
