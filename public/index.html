@@ -11,6 +11,7 @@
 
 	<script>
 		var win;
+
         function showSecret() {
             var x = document.getElementById("clientSecret");
             if (x.type === "password") {
@@ -24,8 +25,10 @@
 		{
 		    if(document.getElementById("authEndpoint").value!="" && document.getElementById("clientID").value!="" && document.getElementById("scope").value!="")
 			{
+
                 win=window.open(window.location.protocol + '//' + window.location.host+'/wait.html', '_blank');
                 win.document.write("Loading...Please wait");
+
 
 			}
 
@@ -106,7 +109,7 @@
 				</div>
 
 				<br>
-				<button type="submit" class="btn btn-primary" onClick="handleClick()">Get Authorization Code</button>
+				<button type="submit" class="btn btn-primary">Get Authorization Code</button>
 				<br>
 			</form>
 		</div>
@@ -115,7 +118,7 @@
 
 	<div class="row">
 		<div class="container">
-			<h3>Step 2: Generate Access Token</h3>
+			<h3 id="token">Step 2: Generate Access Token</h3>
 			<br>
 			<div class="alert alert-danger" id="2" hidden="true">
 			</div>

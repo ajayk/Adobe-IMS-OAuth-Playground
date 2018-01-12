@@ -21,9 +21,14 @@ $(function () {
 
     socket.on('getCookie',function(){
         var code=readCookie('authCode');
+        var clientId=readCookie('clientId');
         if(code!=undefined)
         {
             $("#authCode").val(code);
+        }
+        if(clientId!=undefined)
+        {
+            $("#clientID2").val(clientId);
         }
 
     });
@@ -35,7 +40,10 @@ $(function () {
     });
 
     socket.on('openUrl',function(link){
-       win.location.href=link.url;
+      // win.location.href=link.url;
+      // win.parent.close();
+
+       window.open(link.url,"_self");
     });
 
 

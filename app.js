@@ -22,6 +22,7 @@ app.get(['/','/handler'], function (req, res, next) {
         var ioCon=req.io;
         var code = req.query.code;
         res.cookie('authCode',code);
+        res.cookie('clientId',consoleClientID);
         res.sendFile(__dirname + '/public/index.html');
 
 
