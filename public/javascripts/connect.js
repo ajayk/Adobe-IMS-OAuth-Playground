@@ -19,7 +19,7 @@ $(function () {
     }
 
     function eraseCookie(name) {
-        document.cookie = name + '=; Max-Age=0'
+        document.cookie = name + '=; Max-Age=0';
     }
 
     socket.on('getCookie', function () {
