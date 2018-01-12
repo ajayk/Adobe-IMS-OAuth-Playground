@@ -4,8 +4,8 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var request = require('request');
-var openurl = require('openurl');
-var port=process.env.PORT || 3000;
+
+var port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/public'));
 app.get('/', function (req, res, next) {
@@ -28,8 +28,8 @@ io.on('connection', function (socket) {
         consoleAuthURL = consoleCredentials.authEndpoint;
         consoleScopes = consoleCredentials.scope;
 
-        var url=consoleAuthURL + "?response_type=code&client_id=" + consoleClientID + "&scope=" + consoleScopes;
-        socket.emit('openUrl',{url:url});
+        var url = consoleAuthURL + "?response_type=code&client_id=" + consoleClientID + "&scope=" + consoleScopes;
+        socket.emit('openUrl', {url: url});
     });
 
     socket.on('getAccessToken', function (tokenCredentials) {
@@ -60,23 +60,22 @@ io.on('connection', function (socket) {
                 if (error) {
                     throw error;
                 }
-                else {
-                    if (response.statusCode == 200) {
-                        var token = JSON.parse(body).access_token;
-                        var refresh = JSON.parse(body).refresh_token;
 
-                        socket.emit('accessToken', {access: token, refresh: refresh});
-                    }
-                    else {
-                        socket.emit('message', {
-                            status: 'fail',
-                            text: "Something went wrong, please check the client secret, client id, authorization code and token endpoint URL",
-                            id: 2
-                        });
-                    }
+                if (response.statusCode == 200) {
+                    var token = JSON.parse(body).access_token;
+                    var refresh = JSON.parse(body).refresh_token;
 
-
+                    socket.emit('accessToken', {access: token, refresh: refresh});
                 }
+                else {
+                    socket.emit('message', {
+                        status: 'fail',
+                        text: "Something went wrong, please check the client secret, client id, authorization code and token endpoint URL",
+                        id: 2
+                    });
+                }
+
+
             });
         }
         catch (err) {

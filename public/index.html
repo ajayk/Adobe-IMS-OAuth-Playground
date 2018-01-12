@@ -7,11 +7,11 @@
 
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<link rel="stylesheet" href="/stylesheets/style.css">
+	<link rel="stylesheet" href="stylesheets/style.css">
 
 	<script>
-		var temp;
-        function myFunction() {
+		var win;
+        function showSecret() {
             var x = document.getElementById("clientSecret");
             if (x.type === "password") {
                 x.type = "text";
@@ -22,11 +22,11 @@
 
         function handleClick()
 		{
-			temp=window.open(window.location.protocol + '//' + window.location.host+'/wait.html', '_blank');
-			temp.document.write("Loading...Please wait");
+			win=window.open(window.location.protocol + '//' + window.location.host+'/wait.html', '_blank');
+			win.document.write("Loading...Please wait");
 		}
 
-        function myCopy(id) {
+        function textCopy(id) {
             $('.alert').hide();
 
                 var copyText = document.getElementById(id);
@@ -135,7 +135,7 @@
 					<label for="clientSecret">Client Secret</label>
 					<input type="password" class="form-control" id="clientSecret" placeholder="Enter Client Secret" required>
 					<small id="clientSecretHelp" class="form-text text-muted">console.adobe.io -> "Integration" -> "Overview" -> "Client Credentials" -> "Client secret" on your Adobe I/O Console Integration</small><p></p>
-					<div><a class="btn btn-default btn-sm" onclick="myFunction()"><span class="glyphicon glyphicon-eye-open" ></span>  Show Secret</a></div>
+					<div><a class="btn btn-default btn-sm" onclick="showSecret()"><span class="glyphicon glyphicon-eye-open" ></span>  Show Secret</a></div>
 				</div>
 
 
@@ -163,13 +163,13 @@
 			<div class="form-group">
 				<label for="accessToken">Access Token</label>
 				<textarea readonly rows="10" class="form-control" id="accessToken" placeholder="Your access token will arrive here"></textarea><p></p>
-				<div><a class="btn btn-default btn-sm" onclick="myCopy('accessToken')">Copy</a></div>
+				<div><a class="btn btn-default btn-sm" onclick="textCopy('accessToken')">Copy</a></div>
 			</div>
 
 			<div class="form-group">
 				<label for="refreshToken">Refresh Token</label>
 				<textarea readonly rows="10" class="form-control" id="refreshToken" placeholder="Your refresh token will arrive here"></textarea><p></p>
-				<div><a class="btn btn-default btn-sm" onclick="myCopy('refreshToken')">Copy</a></div>
+				<div><a class="btn btn-default btn-sm" onclick="textCopy('refreshToken')">Copy</a></div>
 			</div>
 		</div>
 	</div>
