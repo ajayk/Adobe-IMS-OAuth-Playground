@@ -28,6 +28,7 @@ $(function () {
         }
         if(clientId!=undefined)
         {
+            $("#clientID").val(clientId);
             $("#clientID2").val(clientId);
         }
 
