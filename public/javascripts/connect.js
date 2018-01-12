@@ -27,8 +27,10 @@ $(function () {
         var clientId = readCookie('clientId');
         if (code !== undefined) {
             $("#authCode").val(code);
-            $(".alert#4").text("Authorization code generated successfully!").fadeTo(1000, 500).slideUp(500, function(){
-                $(".alert#4").slideUp(500);});
+            $('a[href="#access"]').click();
+            $(".alert#4").text("Authorization code generated successfully!").fadeTo(1000, 500).slideUp(500, function () {
+                $(".alert#4").slideUp(500);
+            });
             eraseCookie('authCode');
         }
         if (clientId !== undefined) {
@@ -103,12 +105,13 @@ $(function () {
 
         }
         else {
-
+            $('a[href="#tokens"]').click();
             $("#accessToken").text(body.access);
             $("#refreshToken").text(body.refresh);
             $("#authCode").val('');
-            $(".alert#3").text("Tokens generated successfully!").fadeTo(1000, 500).slideUp(500, function(){
-                $(".alert#3").slideUp(500);});
+            $(".alert#3").text("Tokens generated successfully!").fadeTo(1000, 500).slideUp(500, function () {
+                $(".alert#3").slideUp(500);
+            });
         }
     });
 });
