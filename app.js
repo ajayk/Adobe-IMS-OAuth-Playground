@@ -18,7 +18,7 @@ app.get(['/', '/handler'], function (req, res, next) {
         res.cookie('clientId', consoleClientID);
     }
 
-    res.sendFile(__dirname + '/public/index.html');
+    res.redirect('/');
 
 
 });
