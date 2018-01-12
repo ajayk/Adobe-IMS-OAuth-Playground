@@ -27,6 +27,7 @@ $(function () {
         var clientId = readCookie('clientId');
         if (code !== undefined) {
             $("#authCode").val(code);
+            $(".alert#4").text("Authorization code generated successfully!").show();
             eraseCookie('authCode');
         }
         if (clientId !== undefined) {
