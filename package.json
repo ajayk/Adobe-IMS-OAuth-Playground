@@ -1,23 +1,17 @@
 {
-  "name": "Adobe-IMS-OAuth-Playground",
-  "version": "1.0.0",
-  "description": "test",
-  "main": "app.js",
+  "name": "adobe-ims-oauth-playground",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
     "start": "node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hirenshah111/Adobe-IMS-OAuth-Playground.git"
-
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/hirenshah111/Adobe-IMS-OAuth-Playground/issues"
-  },
-  "homepage": "https://github.com/hirenshah111/Adobe-IMS-OAuth-Playground#readme",
   "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5",
     "express": "^4.16.2",
     "http": "0.0.0",
     "request": "^2.83.0",
