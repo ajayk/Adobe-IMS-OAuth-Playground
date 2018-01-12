@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="/stylesheets/style.css">
 
 	<script>
+		var temp;
         function myFunction() {
             var x = document.getElementById("clientSecret");
             if (x.type === "password") {
@@ -18,6 +19,12 @@
                 x.type = "password";
             }
         }
+
+        function handleClick()
+		{
+			temp=window.open(window.location.protocol + '//' + window.location.host+'/wait.html', '_blank');
+			temp.document.write("Waiting...");
+		}
 
         function myCopy(id) {
             $('.alert').hide();
@@ -94,7 +101,7 @@
 				</div>
 
 				<br>
-				<button type="submit" class="btn btn-primary">Get Authorization Code</button>
+				<button type="submit" class="btn btn-primary" onClick="handleClick()">Get Authorization Code</button>
 				<br>
 			</form>
 		</div>

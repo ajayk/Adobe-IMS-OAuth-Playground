@@ -18,8 +18,7 @@ $(function () {
     });
 
     socket.on('openUrl',function(link){
-        var win=window.open(link.url);
-
+       temp.location.href=link.url;
     });
 
     function listen(uri) {
