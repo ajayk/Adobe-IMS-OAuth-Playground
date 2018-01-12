@@ -30,46 +30,6 @@ io.on('connection', function (socket) {
 
         var url=consoleAuthURL + "?response_type=code&client_id=" + consoleClientID + "&scope=" + consoleScopes;
         socket.emit('openUrl',{url:url});
-
-        /*var oauthCodeOptions = {
-            method: 'GET',
-            url: consoleAuthURL + "?response_type=code&client_id=" + consoleClientID + "&scope=" + consoleScopes,
-            followRedirect: false,
-            headers: {
-                'User-Agent': 'Mozilla/5.0'
-            }
-        };
-
-        console.log(oauthCodeOptions);
-
-        try {
-            request(oauthCodeOptions, function (error, response, body) {
-                if (error) {
-                    console.log("request error: " + error);
-                } else {
-                    console.log("request success1: " + JSON.stringify(response));
-                    var location = response.headers.location;
-                    if (location != undefined) {
-                        //openurl.open(location);
-                        console.log(location);
-                    } else {
-                        socket.emit('message', {
-                            status: 'fail',
-                            text: "Something went wrong, please check the API key, scopes and authorization endpoint URL",
-                            id: 1
-                        });
-                    }
-                }
-            });
-        } catch (err) {
-            socket.emit('message', {
-                status: 'fail',
-                text: "Something went wrong, please check the API key, scopes and authorization endpoint URL",
-                id: 1
-            });
-        }*/
-
-
     });
 
     socket.on('getAccessToken', function (tokenCredentials) {
