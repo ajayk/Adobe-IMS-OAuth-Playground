@@ -22,8 +22,13 @@
 
         function handleClick()
 		{
-			win=window.open(window.location.protocol + '//' + window.location.host+'/wait.html', '_blank');
-			win.document.write("Loading...Please wait");
+		    if(document.getElementById("authEndpoint").value!="" && document.getElementById("clientID").value!="" && document.getElementById("scope").value!="")
+			{
+                win=window.open(window.location.protocol + '//' + window.location.host+'/wait.html', '_blank');
+                win.document.write("Loading...Please wait");
+
+			}
+
 		}
 
         function textCopy(id) {
