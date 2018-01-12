@@ -19,17 +19,24 @@ $(function () {
 
     }
 
+    function eraseCookie(name) {
+        document.cookie = name + '=; Max-Age=0'
+    }
+
     socket.on('getCookie',function(){
         var code=readCookie('authCode');
         var clientId=readCookie('clientId');
         if(code!=undefined)
         {
             $("#authCode").val(code);
+            eraseCookie('authCode');
+            $("#token").focus();
         }
         if(clientId!=undefined)
         {
             $("#clientID").val(clientId);
             $("#clientID2").val(clientId);
+            eraseCookie('clientId');
         }
 
     });
