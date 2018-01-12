@@ -21,12 +21,12 @@ app.get(['/','/handler'], function (req, res, next) {
     {
         var ioCon=req.io;
         var code = req.query.code;
+        res.cookie('authCode',code);
+        res.sendFile(__dirname + '/public/index.html');
 
-        ioCon.emit('setAuthCode',{code:code});
 
     }
 
-    //res.sendFile(__dirname + '/public/index.html');
 
 });
 
@@ -41,6 +41,7 @@ var consoleClientID, consoleClientSecret, consoleAuthCode, consoleAccessToken, c
 
 io.on('connection', function (socket) {
     socket.emit('welcome', {});
+    socket.emit('getCookie',{});
 
 
     socket.on('getAuthCode', function (consoleCredentials) {

@@ -11,6 +11,23 @@ $(function () {
         console.log("connected!");
     });
 
+    function readCookie(name)
+    {
+        const value = "; " + document.cookie;
+        const parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+
+    }
+
+    socket.on('getCookie',function(){
+        var code=readCookie('authCode');
+        if(code!=undefined)
+        {
+            $("#authCode").val(code);
+        }
+
+    });
+
     socket.on('message', function (msg) {
         if (msg.status == ('fail')) {
             $('.alert#' + msg.id).text(msg.text).show();
@@ -20,6 +37,8 @@ $(function () {
     socket.on('openUrl',function(link){
        win.location.href=link.url;
     });
+
+
 
     socket.on('setAuthCode',function(auth){
 
