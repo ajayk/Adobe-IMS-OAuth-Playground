@@ -18,7 +18,7 @@ app.get(['/', '/handler'], function (req, res, next) {
         res.cookie('clientId', consoleClientID);
     }
 
-    res.redirect('/');
+    res.redirect('..');
 
 
 });
