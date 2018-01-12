@@ -37,7 +37,7 @@ function textCopy(id) {
     if (copyText.value != "") {
         copyText.select();
         document.execCommand("Copy");
-        $('.alert#3').text("Token copied successfully!").fadeTo(1000, 500).slideUp(500, function () {
+        $('.alert#3').text("Token copied successfully!").fadeTo(2000, 500).slideUp(500, function () {
             $(".alert#3").slideUp(500);
         });
     }

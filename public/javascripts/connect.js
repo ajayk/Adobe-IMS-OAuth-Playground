@@ -28,7 +28,7 @@ $(function () {
         if (code !== undefined) {
             $("#authCode").val(code);
             $('a[href="#access"]').click();
-            $(".alert#4").text("Authorization code generated successfully!").fadeTo(1000, 500).slideUp(500, function () {
+            $(".alert#4").text("Authorization code generated successfully!").fadeTo(2000, 500).slideUp(500, function () {
                 $(".alert#4").slideUp(500);
             });
             eraseCookie('authCode');
@@ -109,7 +109,7 @@ $(function () {
             $("#accessToken").text(body.access);
             $("#refreshToken").text(body.refresh);
             $("#authCode").val('');
-            $(".alert#3").text("Tokens generated successfully!").fadeTo(1000, 500).slideUp(500, function () {
+            $(".alert#3").text("Tokens generated successfully!").fadeTo(2000, 500).slideUp(500, function () {
                 $(".alert#3").slideUp(500);
             });
         }
