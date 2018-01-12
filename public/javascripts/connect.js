@@ -25,11 +25,11 @@ $(function () {
     socket.on('getCookie', function () {
         var code = readCookie('authCode');
         var clientId = readCookie('clientId');
-        if (code != undefined) {
+        if (code !== undefined) {
             $("#authCode").val(code);
             eraseCookie('authCode');
         }
-        if (clientId != undefined) {
+        if (clientId !== undefined) {
             $("#clientID").val(clientId);
             $("#clientID2").val(clientId);
             eraseCookie('clientId');
@@ -96,7 +96,7 @@ $(function () {
     socket.on('accessToken', function (body) {
         $('.alert').hide();
 
-        if (body.access == undefined || body.refresh == undefined) {
+        if (body.access === undefined || body.refresh === undefined) {
             $(".alert#2").text("Something went wrong, please check the client secret, client id, authorization code and token endpoint URL").show();
 
         }

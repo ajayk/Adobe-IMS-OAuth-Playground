@@ -12,7 +12,7 @@ app.use(express.static(__dirname + '/public'));
 app.get(['/', '/handler'], function (req, res, next) {
 
 
-    if (req.query.code != undefined) {
+    if (req.query.code !== undefined) {
         var code = req.query.code;
         res.cookie('authCode', code);
         res.cookie('clientId', consoleClientID);
