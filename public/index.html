@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Adobe IMS OAuth Playground</title>
+
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="/stylesheets/style.css">
+
+	<script>
+        function myFunction() {
+            var x = document.getElementById("clientSecret");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+        function myCopy(id) {
+            $('.alert').hide();
+
+                var copyText = document.getElementById(id);
+                if(copyText.value!="")
+				{
+                    copyText.select();
+                    document.execCommand("Copy");
+                    $('.alert#3').text("Token copied successfully!").show();
+				}
+
+
+
+        }
+
+        function sync(t1,t2)
+        {
+            var n1 = document.getElementById(t1);
+            var n2 = document.getElementById(t2);
+            if(n2.value=='')
+			{
+                n2.value = n1.value;
+
+			}
+
+        }
+	</script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+	<div class="row">
+		<div class="container">
+			<h2>Adobe IMS OAuth Playground</h2>
+			<p class="lead">Please enter your Adobe I/O Console Credentials below to generate your OAuth Access Token</p>
+
+			<hr>
+		</div>
+	</div>
+
+	<div class="row">
+
+		<div class="container">
+			<h3>Step 1: Generate Authorization Code</h3>
+			<br>
+
+			<div class="alert alert-danger" id="1" hidden="true">
+			</div>
+
+			<form id="consoleCredentials">
+
+
+				<div class="form-group">
+					<label for="authEndpoint">IMS OAuth Authorization Endpoint</label>
+					<input type="text" class="form-control" id="authEndpoint" value="https://ims-na1.adobelogin.com/ims/authorize/v1" required>
+					<small id="technicalAccountHelp" class="form-text text-muted">Adobe IMS OAuth Authorization endpoint [Production Environment]</small>
+				</div>
+
+				<div class="form-group">
+					<label for="clientID">API Key (Client ID)</label>
+					<input type="text" class="form-control" id="clientID" placeholder="Enter Client ID" onchange="sync('clientID','clientID2')" required>
+					<small id="clientIDHelp" class="form-text text-muted">console.adobe.io -> "Integration" -> "Overview" -> "Client Credentials" -> "API Key (Client ID)" on your Adobe I/O Console Integration</small>
+				</div>
+
+				<div class="form-group">
+					<label for="scope">Scopes</label>
+					<input type="text" class="form-control" id="scope" value="AdobeID,openid,creative_sdk" required>
+					<small id="tenantHelp" class="form-text text-muted">Get in touch with your system administrator to learn more about scopes</small>
+				</div>
+
+				<br>
+				<button type="submit" class="btn btn-primary">Get Authorization Code</button>
+				<br>
+			</form>
+		</div>
+	</div>
+	<hr>
+
+	<div class="row">
+		<div class="container">
+			<h3>Step 2: Generate Access Token</h3>
+			<br>
+			<div class="alert alert-danger" id="2" hidden="true">
+			</div>
+
+			<form id="tokenCredentials">
+
+
+
+				<div class="form-group">
+					<label for="tokenEndpoint">IMS OAuth Token Endpoint</label>
+					<input type="text" class="form-control" id="tokenEndpoint" value="https://ims-na1.adobelogin.com/ims/token/v1" required>
+					<small id="orgIDHelp" class="form-text text-muted">Adobe IMS OAuth Token endpoint [Production Environment]</small>
+				</div>
+
+				<div class="form-group">
+					<label for="clientID2">API Key (Client ID)</label>
+					<input type="text" class="form-control" id="clientID2" placeholder="Enter Client ID" onchange="sync('clientID2','clientID')" required>
+					<small id="clientID2Help" class="form-text text-muted">console.adobe.io -> "Integration" -> "Overview" -> "Client Credentials" -> "API Key (Client ID)" on your Adobe I/O Console Integration</small>
+				</div>
+
+				<div class="form-group">
+					<label for="clientSecret">Client Secret</label>
+					<input type="password" class="form-control" id="clientSecret" placeholder="Enter Client Secret" required>
+					<small id="clientSecretHelp" class="form-text text-muted">console.adobe.io -> "Integration" -> "Overview" -> "Client Credentials" -> "Client secret" on your Adobe I/O Console Integration</small><p></p>
+					<div><a class="btn btn-default btn-sm" onclick="myFunction()"><span class="glyphicon glyphicon-eye-open" ></span>  Show Secret</a></div>
+				</div>
+
+
+				<div class="form-group">
+					<label for="authCode">Authorization Code</label>
+					<textarea rows="10" class="form-control" id="authCode" placeholder="Enter Authorization Code" required></textarea>
+					<small id="authCodeHelp" class="form-text text-muted">Copy the Authorization code generated from step 1 to here</small>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Generate Access Token</button>
+
+			</form>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="row">
+		<div class="container">
+			<h3>Step 3: Tokens</h3>
+			<br>
+			<div class="alert alert-success" id="3" hidden="true">
+			</div>
+
+			<div class="form-group">
+				<label for="accessToken">Access Token</label>
+				<textarea readonly rows="10" class="form-control" id="accessToken" placeholder="Your access token will arrive here"></textarea><p></p>
+				<div><a class="btn btn-default btn-sm" onclick="myCopy('accessToken')">Copy</a></div>
+			</div>
+
+			<div class="form-group">
+				<label for="refreshToken">Refresh Token</label>
+				<textarea readonly rows="10" class="form-control" id="refreshToken" placeholder="Your refresh token will arrive here"></textarea><p></p>
+				<div><a class="btn btn-default btn-sm" onclick="myCopy('refreshToken')">Copy</a></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/javascripts/connect.js"></script>
+
+
+
+</body>
+
+</html>

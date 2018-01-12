@@ -1,0 +1,28 @@
+{
+  "name": "ims-auth",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarahxxu/IMS-Auth.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sarahxxu/IMS-Auth/issues"
+  },
+  "homepage": "https://github.com/sarahxxu/IMS-Auth#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "http": "0.0.0",
+    "openurl": "^1.1.1",
+    "opn": "^5.1.0",
+    "request": "^2.83.0",
+    "socket.io": "^2.0.4"
+  }
+}
