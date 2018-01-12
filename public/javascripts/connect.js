@@ -107,7 +107,8 @@ $(function () {
             $("#accessToken").text(body.access);
             $("#refreshToken").text(body.refresh);
             $("#authCode").val('');
-            $(".alert#3").text("Tokens generated successfully!").show();
+            $(".alert#3").text("Tokens generated successfully!").fadeTo(1000, 500).slideUp(500, function(){
+                $(".alert#3").slideUp(500);});
         }
     });
 });
