@@ -28,7 +28,6 @@ $(function () {
         if (code != undefined) {
             $("#authCode").val(code);
             eraseCookie('authCode');
-            document.getElementById('token').focus();
         }
         if (clientId != undefined) {
             $("#clientID").val(clientId);

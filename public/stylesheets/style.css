@@ -1,20 +1,20 @@
 body {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 .panel-body {
-  word-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .tab-pane {
-  padding-top: 20px;
+    padding-top: 20px;
 }
 
 .btn {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }

@@ -8,20 +8,17 @@ var request = require('request');
 var port = process.env.PORT || 3000;
 
 
-
 app.use(express.static(__dirname + '/public'));
-app.get(['/','/handler'], function (req, res, next) {
+app.get(['/', '/handler'], function (req, res, next) {
 
 
-    if(req.query.code!=undefined)
-    {
+    if (req.query.code != undefined) {
         var code = req.query.code;
-        res.cookie('authCode',code);
-        res.cookie('clientId',consoleClientID);
-        res.sendFile(__dirname + '/public/index.html');
-
-
+        res.cookie('authCode', code);
+        res.cookie('clientId', consoleClientID);
     }
+
+    res.sendFile(__dirname + '/public/index.html');
 
 
 });
@@ -33,11 +30,9 @@ var consoleClientID, consoleClientSecret, consoleAuthCode, consoleAccessToken, c
     consoleScopes;
 
 
-
-
 io.on('connection', function (socket) {
     socket.emit('welcome', {});
-    socket.emit('getCookie',{});
+    socket.emit('getCookie', {});
 
 
     socket.on('getAuthCode', function (consoleCredentials) {
