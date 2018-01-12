@@ -21,6 +21,11 @@ $(function () {
        win.location.href=link.url;
     });
 
+    socket.on('setAuthCode',function(auth){
+
+        $("#authCode").val(auth.code);
+    });
+
     function listen(uri) {
     }
 

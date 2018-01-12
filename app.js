@@ -7,15 +7,36 @@ var request = require('request');
 
 var port = process.env.PORT || 3000;
 
+app.use(function (req, res, next) {
+    req.io = io;
+    next();
+})
+
+
 app.use(express.static(__dirname + '/public'));
-app.get('/', function (req, res, next) {
-    res.sendFile(__dirname + '/index.html');
+app.get(['/','/handler'], function (req, res, next) {
+
+
+    if(req.query.code!=undefined)
+    {
+        var ioCon=req.io;
+        var code = req.query.code;
+
+        ioCon.emit('setAuthCode',{code:code});
+
+    }
+
+    //res.sendFile(__dirname + '/public/index.html');
+
 });
+
 
 server.listen(port);
 
 var consoleClientID, consoleClientSecret, consoleAuthCode, consoleAccessToken, consoleAuthURL, consoleTokenURL,
     consoleScopes;
+
+
 
 
 io.on('connection', function (socket) {
