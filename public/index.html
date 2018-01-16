@@ -21,7 +21,8 @@
     <div class="row">
         <div class="container">
             <h2>Adobe IMS OAuth Playground</h2>
-            <p class="lead">Please use your <a href="https://console.adobe.io" target="_blank">Adobe I/O Console</a> Credentials below to generate your OAuth Access
+            <p class="lead">Please use your <a href="https://console.adobe.io" target="_blank">Adobe I/O Console</a>
+                Credentials below to generate your OAuth Access
                 Token</p>
 
             <hr>
@@ -32,6 +33,7 @@
         <li class="active"><a data-toggle="tab" href="#auth">Authorization</a></li>
         <li><a data-toggle="tab" href="#access">Access</a></li>
         <li><a data-toggle="tab" href="#tokens">Tokens</a></li>
+        <li><a data-toggle="tab" href="#apis">APIs</a></li>
     </ul>
 
     <div class="tab-content">
@@ -60,8 +62,7 @@
 
                         <div class="form-group">
                             <label for="clientID">API Key (Client ID)</label>
-                            <input type="text" class="form-control" id="clientID" placeholder="Enter Client ID"
-                                   onchange="sync('clientID','clientID2')" required>
+                            <input type="text" class="form-control" id="clientID" placeholder="Enter Client ID" required>
                             <small id="clientIDHelp" class="form-text text-muted">console.adobe.io -> "Integration" ->
                                 "Overview" -> "Client Credentials" -> "API Key (Client ID)" on your Adobe I/O Console
                                 Integration
@@ -89,7 +90,7 @@
         <div id="access" class="tab-pane fade">
             <div class="row">
                 <div class="container">
-                    <h3 id="token">Step 2: Generate Access Token</h3>
+                    <h3>Step 2: Generate Access Token</h3>
                     <br>
                     <div class="alert alert-danger" id="2" hidden="true">
                     </div>
@@ -110,8 +111,7 @@
 
                         <div class="form-group">
                             <label for="clientID2">API Key (Client ID)</label>
-                            <input type="text" class="form-control" id="clientID2" placeholder="Enter Client ID"
-                                   onchange="sync('clientID2','clientID')" required>
+                            <input type="text" class="form-control" id="clientID2" placeholder="Enter Client ID" required>
                             <small id="clientID2Help" class="form-text text-muted">console.adobe.io -> "Integration" ->
                                 "Overview" -> "Client Credentials" -> "API Key (Client ID)" on your Adobe I/O Console
                                 Integration
@@ -141,7 +141,7 @@
                                       required></textarea>
                             <small id="authCodeHelp" class="form-text text-muted">Copy the Authorization code generated
                                 from the
-                                above step; Note: An authorization code can be used only once to generate an access
+                                previous step; Note: An authorization code can be used only once to generate an access
                                 token
                             </small>
                         </div>
@@ -165,7 +165,7 @@
                         <textarea readonly rows="10" class="form-control" id="accessToken"
                                   placeholder="Your access token will arrive here"></textarea>
                         <p></p>
-                        <div><a class="btn btn-default btn-sm" onclick="textCopy('accessToken')">Copy</a></div>
+                        <div><a class="btn btn-default btn-sm" onclick="textCopy('accessToken',3)">Copy</a></div>
                     </div>
 
                     <div class="form-group">
@@ -173,7 +173,72 @@
                         <textarea readonly rows="10" class="form-control" id="refreshToken"
                                   placeholder="Your refresh token will arrive here"></textarea>
                         <p></p>
-                        <div><a class="btn btn-default btn-sm" onclick="textCopy('refreshToken')">Copy</a></div>
+                        <div><a class="btn btn-default btn-sm" onclick="textCopy('refreshToken',3)">Copy</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="apis" class="tab-pane fade">
+            <div class="row">
+                <div class="container">
+                    <h3>Step 4: Interact with APIs</h3>
+                    <br>
+                    <div class="alert alert-danger" id="5" hidden="true">
+                    </div>
+                    <div class="alert alert-success" id="6" hidden="true"></div>
+
+                    <form id="apiCredentials">
+
+                        <div class="form-group">
+                            <label for="method">Method</label>
+                            <p>
+                                <select id="method" class="btn btn-info btn-lg" required>
+                                    <option value="GET">GET</option>
+                                    <option value="POST">POST</option>
+                                    <option value="PUT">PUT</option>
+                                </select>
+                        </div>
+                        <div class="form-group">
+
+
+                            <label for="apiEndpoint">IMS OAuth Token Endpoint</label>
+                            <input type="text" class="form-control" id="apiEndpoint"
+                                   placeholder="Your API endpoint" required>
+                            <small id="apiHelp" class="form-text text-muted">Adobe IMS OAuth Token endpoint
+                                [Production
+                                Environment]
+                            </small>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="clientID3">API Key (x-api-key)</label>
+                            <input type="text" class="form-control" id="clientID3" placeholder="Enter API Key" required>
+                            <small id="clientID3Help" class="form-text text-muted">console.adobe.io -> "Integration" ->
+                                "Overview" -> "Client Credentials" -> "API Key (Client ID)" on your Adobe I/O Console
+                                Integration
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="authorization">Authorization</label>
+                            <textarea rows="10" class="form-control" id="authorization"
+                                      placeholder="Bearer <access token>" required></textarea>
+
+                            <p></p>
+                            <div><a class="btn btn-default btn-sm" onclick="textCopy('authorization',6)">Copy</a></div>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Send</button>
+
+                    </form>
+
+                    <div class="form-group">
+                        <label for="response">Response</label>
+                        <textarea readonly rows="50" class="form-control" id="response"
+                                  placeholder="Your response message will arrive here"></textarea>
+
                     </div>
                 </div>
             </div>

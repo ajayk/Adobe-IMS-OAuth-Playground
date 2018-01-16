@@ -27,7 +27,7 @@ app.get(['/', '/handler'], function (req, res, next) {
 server.listen(port);
 
 var consoleClientID, consoleClientSecret, consoleAuthCode, consoleAccessToken, consoleAuthURL, consoleTokenURL,
-    consoleScopes;
+    consoleScopes, method, authorization, apiEndpoint;
 
 
 io.on('connection', function (socket) {
@@ -96,6 +96,46 @@ io.on('connection', function (socket) {
                 status: 'fail',
                 text: "Something went wrong, please check the client secret, client id, authorization code and token endpoint URL",
                 id: 2
+            });
+        }
+
+
+    });
+
+
+    socket.on('getApiResponse', function (apiCredentials) {
+
+        method = apiCredentials.method;
+        consoleClientID = apiCredentials.clientID;
+        authorization = apiCredentials.authorization;
+        apiEndpoint = apiCredentials.apiEndpoint;
+
+        var accessTokenOptions = {
+            method: method,
+            url: apiEndpoint,
+            headers: {
+                'authorization': authorization,
+                'x-api-key': consoleClientID
+            },
+            formData: {}
+        };
+
+        try {
+            request(accessTokenOptions, function (error, response, body) {
+                if (error) {
+                    throw error;
+                }
+
+                socket.emit('apiResponse', {response: response});
+
+
+            });
+        }
+        catch (err) {
+            socket.emit('message', {
+                status: 'fail',
+                text: "Something went wrong, please check the client secret, client id, authorization code and token endpoint URL",
+                id: 5
             });
         }
 

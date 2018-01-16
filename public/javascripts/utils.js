@@ -30,27 +30,17 @@ function handleClick() {
 
 }
 
-function textCopy(id) {
+function textCopy(id,alertId) {
     $('.alert').hide();
 
     var copyText = document.getElementById(id);
     if (copyText.value != "") {
         copyText.select();
         document.execCommand("Copy");
-        $('.alert#3').text("Token copied successfully!").fadeTo(2000, 500).slideUp(500, function () {
-            $(".alert#3").slideUp(500);
+        $('.alert#'+alertId).text("Token copied successfully!").fadeTo(2000, 500).slideUp(500, function () {
+            $(".alert#"+alertId).slideUp(500);
         });
     }
 
-
-}
-
-function sync(t1, t2) {
-    var n1 = document.getElementById(t1);
-    var n2 = document.getElementById(t2);
-    if (n2.value == '') {
-        n2.value = n1.value;
-
-    }
 
 }
