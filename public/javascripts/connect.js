@@ -5,7 +5,6 @@ $(function () {
     var socketUrl = window.location.protocol + '//' + window.location.host;
     var socket;
 
-
     socket = io.connect(socketUrl);
     socket.on('welcome', function () {
         console.log("connected!");
@@ -36,7 +35,6 @@ $(function () {
         if (clientId !== undefined) {
             $("#clientID").val(clientId);
             $("#clientID2").val(clientId);
-            $("#clientID3").val(clientId);
             eraseCookie('clientId');
         }
 
@@ -70,7 +68,6 @@ $(function () {
         else {
             $('a[href="#tokens"]').click();
             $("#accessToken").text(body.access);
-            $("#authorization").text("Bearer "+body.access);
             $("#refreshToken").text(body.refresh);
             $("#authCode").val('');
             $(".alert#3").text("Tokens generated successfully!").fadeTo(2000, 500).slideUp(500, function () {
@@ -79,21 +76,6 @@ $(function () {
         }
     });
 
-    socket.on('apiResponse', function (info) {
-        $('.alert').hide();
-
-        if (info.response === undefined) {
-            $(".alert#5").text("Something went wrong, please check the client secret, client id, authorization code and token endpoint URL").show();
-
-        }
-        else {
-            $("#response").html(JSON.stringify(info.response,null,'\t')).removeAttr('hidden');
-
-            $(".alert#6").text("Response received successfully!").fadeTo(2000, 500).slideUp(500, function () {
-                $(".alert#3").slideUp(500);
-            });
-        }
-    });
 
     function listen(uri) {
     }
@@ -130,25 +112,6 @@ $(function () {
             clientID: clientID,
             clientSecret: clientSecret,
             authCode: authCode
-        });
-    });
-
-    $("#apiCredentials").submit(function (event) {
-
-        $('.alert').hide();
-
-        event.preventDefault();
-
-        var method = $("#method").val();
-        var apiEndpoint = $("input#apiEndpoint").val();
-        var clientID = $("input#clientID3").val();
-        var authorization = $("textarea#authorization").val();
-
-        socket.emit('getApiResponse', {
-            method:method,
-            apiEndpoint: apiEndpoint,
-            clientID: clientID,
-            authorization: authorization
         });
     });
 
