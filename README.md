@@ -25,4 +25,3 @@ Browse to https://localhost:3000 and follow the shown instruction. Paste your cr
 
 # License
 [MIT](LICENSE)
-# IMS-Auth
